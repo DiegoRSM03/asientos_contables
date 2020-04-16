@@ -27,6 +27,9 @@ nav {
   padding: 1rem 5rem;
   position: fixed;
   z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 nav h1 {
@@ -146,5 +149,120 @@ nav p {
 #login-form form button:hover {
   color: #F2F2F2;
   background-color: #333333;
+}
+
+#table-asientos {
+  width: 100vw;
+  margin: 3rem 0;
+}
+
+#table-asientos .search,
+#table-asientos table {
+  width: 100%;
+  padding: 0 5rem;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #333333;
+  padding-top: 5rem !important;
+}
+
+.search h1 {
+  grid-column: 1/span 2;
+  color: #F2F2F2;
+  font-family: "Roboto Black";
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.search .search-input,
+.search fieldset {
+  display: flex;
+}
+
+.search .id {
+  display: flex;
+  align-items: center;
+  background-color: rgba(34, 34, 34, 0.3);
+  border-radius: 10rem;
+  height: 2.5rem;
+  padding: 0 1rem;
+  margin: auto 5rem;
+  transition: 0.3s ease 0s;
+}
+
+.search .id span {
+  color: #F2F2F2;
+  font-size: 1.5rem;
+  margin: 0.5rem 1rem;
+}
+
+.search .id input {
+  color: #F2F2F2;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1rem;
+  font-family: "Roboto Light";
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.search fieldset {
+  border-radius: 10px;
+  margin-left: 5rem;
+}
+
+.search fieldset legend {
+  color: #F2F2F2;
+  font-family: "Roboto Black";
+  padding: 0 0.5rem;
+}
+
+.search fieldset [class^=order-by] {
+  padding: 1rem 2rem;
+}
+
+.search fieldset [class^=order-by] label {
+  color: #818181;
+  font-family: "Roboto Light";
+}
+
+.search fieldset [class^=order-by] input {
+  margin-left: 3rem;
+}
+
+.search fieldset [class^=order-by] input[type=radio]:checked {
+  transform: scale(1.3);
+}
+
+.search fieldset [class^=order-by] span {
+  color: #818181;
+}
+
+.search button {
+  grid-column: 1/span 2;
+  color: #97BF04;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #97BF04;
+  border-radius: 50rem;
+  font-family: "Roboto Black";
+  font-size: 1rem;
+  letter-spacing: 2px;
+  width: 30%;
+  padding: 0.5rem 0;
+  margin: 2rem auto;
+  transition: 0.3s ease 0s;
+}
+
+.search button:hover {
+  color: #333333;
+  background-color: #97BF04;
+}
+
+table {
+  margin-top: 5rem;
 }
 

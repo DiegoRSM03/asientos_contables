@@ -15,9 +15,9 @@ class LoginController extends Controller
 	public function verify () {
 
 		if ($_POST['login-id'] == '3' && $_POST['login-password'] == 'juan23') {
-			return view('home');
+			return redirect('/asientos');
 		} else {
-			return view('login');
+			return redirect('/');
 		}
 		
     }
