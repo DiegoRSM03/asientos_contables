@@ -132,6 +132,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     totalAsientos: function totalAsientos() {
@@ -152,7 +153,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 5:
                 data = _context.sent;
                 console.log(data);
-                return _context.abrupt("return", data);
+                return _context.abrupt("return", 5);
 
               case 8:
               case "end":
@@ -1397,8 +1398,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.totalAsientos, function(i) {
         return _c("tbody", { key: i }, [
-          _vm._v("\n\t\t" + _vm._s(_vm.console.log(i)) + "\n\t\t"),
-          _c("tr", [_vm._v(_vm._s(i))])
+          _c("tr", [_c("td", { attrs: { colspan: "4" } }, [_vm._v(_vm._s(i))])])
         ])
       })
     ],
