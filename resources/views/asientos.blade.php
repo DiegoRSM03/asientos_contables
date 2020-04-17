@@ -25,22 +25,9 @@
 			</fieldset>
 			<button type="submit">BUSCAR</button>
 		</form>
-		<table>
-			<thead>
-				<tr>
-					<th>Fecha</th>
-					<th>Descripcion</th>
-					<th>Debe</th>
-					<th>Haber</th>
-				</tr>
-				{{-- @foreach ($asientos as $asiento)
-					<asiento></asiento>
-				@endforeach --}}
-			</thead>
-			<tbody>
-	
-			</tbody>
-		</table>
+		<div id="table-container">
+			<app></app>
+		</div>
 	</div>
 
 	<script src=" {{ asset('js/app.js') }} "></script>

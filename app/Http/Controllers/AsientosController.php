@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Asiento;
 
 class AsientosController extends Controller
 {
@@ -13,9 +14,7 @@ class AsientosController extends Controller
      */
     public function index()
     {
-
 		return view('asientos');
-
     }
 
     /**
@@ -61,5 +60,11 @@ class AsientosController extends Controller
     public function destroy($id)
     {
         //
-    }
+	}
+	
+	public function totalAsientos()
+    {
+        return Asiento::count();
+	}
+
 }
