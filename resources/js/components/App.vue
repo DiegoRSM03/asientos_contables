@@ -8,24 +8,28 @@
 				<th>Haber</th>
 			</tr>
 		</thead>
-		<tbody v-for="i in totalAsientos" v-bind:key="i">
+		<tbody v-for="i in totalAsientos" v-bind:key="i.id">
 			<tr>
-				<td colspan="4">{{ i }}</td>	
+				<td colspan="4">{{ i.id }}</td>	
 			</tr>
 		</tbody>
 	</table>
 </template>
 
 <script>
-export default {
-	computed: {
-		async totalAsientos () {
-			let response = await fetch('/asientos/total')
-			let data = await response.json();
-			console.log(data);
+const axios = require('axios').default;
 
-			return 5;
+export default {
+	data: function () {
+		return {
+			totalAsientos: null
 		}
+	},
+	mounted () {
+		axios
+			.get('/accounts')
+			.then(response => (this.totalAsientos = response.data))
+			.then(data => console.log(this.totalAsientos))
 	}
 }
 </script>
