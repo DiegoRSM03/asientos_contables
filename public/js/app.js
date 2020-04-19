@@ -1991,8 +1991,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
+var rowId = 0;
+var rowIdShow = 2;
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'asientos-new',
   components: {
@@ -2000,7 +2009,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      rowId: 0,
       id: '',
       date: '',
       description: '',
@@ -2012,8 +2020,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     setId: function setId() {
-      this.rowId++;
-      return this.rowId;
+      rowId++;
+      return rowId;
+    },
+    newAsiento: function newAsiento() {
+      rowIdShow++;
+      document.getElementById('asiento-row-' + rowIdShow).hidden = false;
     }
   }
 });
@@ -2065,6 +2077,9 @@ __webpack_require__.r(__webpack_exports__);
       haberBlocked: true
     };
   },
+  props: {
+    rowId: Number
+  },
   methods: {
     getAccounts: function getAccounts() {
       var _this = this;
@@ -2074,10 +2089,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     block: function block(who, wich) {
-      document.getElementById("new-".concat(who)).hidden = false;
-      document.getElementById("new-".concat(wich)).hidden = true;
-      document.getElementById("new-".concat(who, "-mount")).hidden = false;
-      document.getElementById("new-".concat(wich, "-mount")).hidden = true;
+      document.getElementById('new-' + who + '-' + this.rowId).hidden = false;
+      document.getElementById('new-' + wich + '-' + this.rowId).hidden = true;
+      document.getElementById('new-' + who + '-mount-' + this.rowId).hidden = false;
+      document.getElementById('new-' + wich + '-mount-' + this.rowId).hidden = true;
     }
   },
   created: function created() {
@@ -14177,12 +14192,42 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
+        { attrs: { id: "tbody" } },
         [
-          _c("asiento-row"),
+          _c("asiento-row", { attrs: { rowId: _vm.setId() } }),
           _vm._v(" "),
-          _c("asiento-row"),
+          _c("asiento-row", { attrs: { rowId: _vm.setId() } }),
           _vm._v(" "),
-          _vm._m(1)
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
+          _vm._v(" "),
+          _c("tr", { staticClass: "adder" }, [
+            _c(
+              "td",
+              {
+                attrs: { colspan: "5", id: "adder" },
+                on: {
+                  click: function($event) {
+                    return _vm.newAsiento()
+                  }
+                }
+              },
+              [_vm._m(1)]
+            )
+          ])
         ],
         1
       )
@@ -14212,13 +14257,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", { staticClass: "adder" }, [
-      _c("td", { attrs: { colspan: "5" } }, [
-        _c("div", [
-          _c("span", { staticClass: "flaticon-plus" }),
-          _vm._v("Nuevo")
-        ])
-      ])
+    return _c("div", [
+      _c("span", { staticClass: "flaticon-plus" }),
+      _vm._v("Nuevo")
     ])
   }
 ]
@@ -14243,7 +14284,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", { attrs: { id: "asiento-row" } }, [
+  return _c("tr", { attrs: { id: "asiento-row-" + _vm.rowId } }, [
     _c("td", { staticClass: "code" }, [
       _c(
         "p",
@@ -14283,7 +14324,7 @@ var render = function() {
                 expression: "id"
               }
             ],
-            attrs: { name: "new-debe", id: "new-debe" },
+            attrs: { name: "new-debe", id: "new-debe-" + _vm.rowId },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -14340,7 +14381,11 @@ var render = function() {
                 expression: "id"
               }
             ],
-            attrs: { name: "new-haber", id: "new-haber", hidden: "" },
+            attrs: {
+              name: "new-haber",
+              id: "new-haber-" + _vm.rowId,
+              hidden: ""
+            },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -14375,40 +14420,26 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1)
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "number-debe" }, [
+    _c("td", { staticClass: "number-debe" }, [
       _c("input", {
         attrs: {
           type: "number",
           name: "new-debe-mount",
-          id: "new-debe-mount",
+          id: "new-debe-mount-" + _vm.rowId,
           min: "1",
           max: "99999",
           value: "0",
           required: ""
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "number-haber" }, [
+    ]),
+    _vm._v(" "),
+    _c("td", { staticClass: "number-haber" }, [
       _c("input", {
         attrs: {
           type: "number",
           name: "new-haber-mount",
-          id: "new-haber-mount",
+          id: "new-haber-mount-" + _vm.rowId,
           min: "1",
           max: "99999",
           value: "0",
@@ -14417,8 +14448,9 @@ var staticRenderFns = [
         }
       })
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -28196,7 +28228,6 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    saludo: 'Hello World',
     totalAsientos: 0
   },
   getters: {},

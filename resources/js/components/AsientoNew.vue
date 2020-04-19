@@ -24,15 +24,22 @@
 					<th>Haber</th>
 				</tr>
 			</thead>
-			<tbody>
-				<asiento-row></asiento-row>
-				<asiento-row></asiento-row>
+			<tbody id="tbody">
+				<asiento-row :rowId="setId()"></asiento-row>
+				<asiento-row :rowId="setId()"></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
+				<asiento-row :rowId="setId()" hidden></asiento-row>
 				<tr class="adder">
-					<td colspan="5">
+					<td colspan="5" @click="newAsiento()" id="adder">
 						<div><span class="flaticon-plus"></span>Nuevo</div>
 					</td>
 				</tr>
-
 			</tbody>
 		</table>
 		<input type="submit" value="Añadir">
@@ -42,6 +49,8 @@
 <script>
 import toastr from 'toastr';
 import AsientoRow from './AsientoRow';
+var rowId = 0;
+var rowIdShow = 2;
 
 export default {
 	name: 'asientos-new',
@@ -50,8 +59,6 @@ export default {
 	},
 	data () {
 		return {
-			rowId: 0,
-
 			id: '',
 			date: '',
 			description: '',
@@ -63,8 +70,12 @@ export default {
 	},
 	methods: {
 		setId () {
-			this.rowId++;
-			return this.rowId;
+			rowId++;
+			return rowId;
+		},
+		newAsiento () {
+			rowIdShow++;
+			document.getElementById('asiento-row-' + rowIdShow).hidden = false;
 		}
 	}
 }
