@@ -10,7 +10,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="asiento in this.asientos" :key="asiento.id">
+				<tr v-for="asiento in asientos" :key="asiento.id">
 					<td colspan="4">{{ asiento.id }}</td>	
 				</tr>
 				<tr></tr>
@@ -20,11 +20,25 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: 'asientos-table',
-	props: {
-		asientos: Array
+	data () {
+		return {
+			asientos: []
+		}
 	},
+	methods: {
+		getAsientos () {
+			axios.get('/asientos').then(response => {
+				this.asientos = response.data
+			});
+		}
+	},
+	created () {
+		this.getAsientos();
+	}
 	
 }
 </script>

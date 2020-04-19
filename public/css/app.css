@@ -421,6 +421,7 @@ nav p {
   border-radius: 5px;
   background-color: rgba(34, 34, 34, 0.3);
   width: 100%;
+  max-width: 500px;
   height: 2.5rem;
   padding: 0 1rem;
   margin-bottom: 1rem;
@@ -464,14 +465,6 @@ nav p {
   padding: 0.5rem 0;
 }
 
-.container-table tbody tr:nth-child(even) {
-  background-color: rgba(34, 34, 34, 0.5);
-}
-
-.container-table tbody tr:nth-child(odd) {
-  background-color: rgba(34, 34, 34, 0.3);
-}
-
 .container-table tbody .adder td {
   color: #F2F2F2;
   background-color: #97BF04;
@@ -489,39 +482,6 @@ nav p {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.container-table tbody tr {
-  width: 100%;
-}
-
-.container-table tbody tr .code {
-  width: 10%;
-}
-
-.container-table tbody tr .account-debe,
-.container-table tbody tr .account-haber {
-  width: calc(50% / 2);
-}
-
-.container-table tbody tr .number-debe,
-.container-table tbody tr .number-haber {
-  width: 20%;
-}
-
-.container-table tbody tr td {
-  color: #818181;
-  font-family: "Roboto Light";
-  font-size: 0.8rem;
-  padding: 0.3rem 0.5rem;
-}
-
-.container-table tbody tr td select {
-  width: 100%;
-}
-
-.container-table tbody tr td input[type=number] {
-  width: 100%;
 }
 
 #asientos-search .search-id,
@@ -632,6 +592,39 @@ nav p {
 #asientos-table table tbody tr .table-description [class^=h] {
   display: flex;
   justify-content: space-between;
+}
+
+#asiento-row {
+  width: 100%;
+}
+
+#asiento-row .code {
+  width: 10%;
+}
+
+#asiento-row .account-debe,
+#asiento-row .account-haber {
+  width: calc(50% / 2);
+}
+
+#asiento-row .number-debe,
+#asiento-row .number-haber {
+  width: 20%;
+}
+
+#asiento-row td {
+  color: #818181;
+  font-family: "Roboto Light";
+  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+}
+
+#asiento-row td select {
+  width: 100%;
+}
+
+#asiento-row td input[type=number] {
+  width: 100%;
 }
 
 * {

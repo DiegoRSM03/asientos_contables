@@ -1,8 +1,3 @@
-import toastr from 'toastr';
-
-toastr.options.closeButton = true;
-toastr.options.progressBar = true;
-
 document.addEventListener('DOMContentLoaded', () => {
 
 	// ANIMACION FOCUS DIV SEARCH-ID

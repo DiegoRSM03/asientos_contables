@@ -50,6 +50,8 @@ export default {
 	},
 	data () {
 		return {
+			rowId: 0,
+
 			id: '',
 			date: '',
 			description: '',
@@ -57,6 +59,12 @@ export default {
 			haber: '',
 			debe_mount: '',
 			haber_mount: ''
+		}
+	},
+	methods: {
+		setId () {
+			this.rowId++;
+			return this.rowId;
 		}
 	}
 }
