@@ -14,8 +14,7 @@ class AccountsController extends Controller
      */
     public function index()
     {
-		$data = Account::all();
-		return json_encode($data);
+		return Account::all();
     }
 
     /**

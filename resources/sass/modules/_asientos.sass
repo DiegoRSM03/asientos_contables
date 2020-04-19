@@ -1,0 +1,53 @@
+#asientos
+	width: 100%
+	margin: 5rem auto
+
+	#asientos-forms
+		display: flex
+		align-items: stretch
+		justify-content: space-between
+
+		padding: 0 5rem
+		margin-bottom: 3rem
+
+		[id^=asientos]
+			display: flex
+			flex-direction: column
+			align-items: center
+			justify-content: center
+
+			width: 49%
+
+			background-color: $BLACK
+			border-radius: 10px
+			box-shadow: 0 0 1rem .2rem rgba(0, 0, 0, .2)
+			
+			padding: 3rem
+
+			h1
+				color: $WHITE
+				font-family: 'Roboto Black'
+				text-align: center
+				margin-bottom: 3rem
+
+			input[type=submit]
+				justify-content: center
+
+				color: $GREEN_DARK
+				background-color: rgba(0, 0, 0, 0)
+				border-radius: 5px
+				border: 2px solid $GREEN_DARK
+
+				font-family: 'Roboto Black'
+				font-size: 1rem
+				
+				width: 100%
+				max-width: 500px
+				padding: .5rem 0
+				margin: 3rem auto 0
+				transition: .3s ease 0s
+				cursor: pointer
+
+				&:hover
+					color: $BLACK
+					background-color: $GREEN_DARK

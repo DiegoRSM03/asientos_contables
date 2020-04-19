@@ -9,7 +9,7 @@
 			<img src=" {{ asset('img/banner.svg') }} " alt="imagen svg de banner login">
 		</div>
 		<div id="login-form">
-			<form method="POST" action=" {{ url('/') }} ">
+			<form method="POST" action=" {{ url('/login') }} ">
 				@csrf
 				<h1>Log In</h1>
 				<div class="login-id">

@@ -1,3 +1,14 @@
+@import ~toastr/build/toastr.css
+@import modules/_variables
+@import modules/_navigation
+@import modules/_banner
+@import modules/_form_login
+@import modules/_asientos
+@import modules/asientos/_asientos_new
+@import modules/asientos/_asientos_new_table
+@import modules/asientos/_asientos_search
+@import modules/asientos/_asientos_table
+
 *
 	padding: 0
 	margin: 0
@@ -10,11 +21,22 @@ input:focus
 	outline: none !important
 	box-shadow: none !important
 
+#toast-container > div
+	opacity: 1
+	box-shadow: 0 0 12px rgba(34, 34, 34, .8)
 
-@import modules/_variables
-@import modules/_navigation
-@import modules/_banner
-@import modules/_form_login
-@import modules/_table_asientos
-@import modules/_form_search
-@import modules/_table
+.toast-title,
+.toast-message,
+.toast-close-button
+	color: $WHITE
+
+.toast-title
+	font-family: 'Roboto Bold'
+	font-weight: normal
+
+.toast-message
+	font-family: 'Roboto Light'
+
+.toast-success
+	background-color: darken($GREEN_DARK, 10)
+	background-image: none

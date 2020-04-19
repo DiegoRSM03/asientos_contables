@@ -1,0 +1,57 @@
+#asientos-search
+
+	.search-id,
+	fieldset
+		width: 100%
+		max-width: 500px
+		border-radius: 5px
+
+	.search-id
+		display: flex
+		align-items: center
+
+		background-color: rgba(34, 34, 34, .3)
+
+		height: 2.5rem
+		padding: 0 1rem
+		margin-bottom: 1rem
+		transition: .3s ease 0s
+
+
+		span
+			color: $WHITE
+			font-size: 1.5rem
+			padding: .5rem 1rem
+
+		input
+			color: $WHITE
+			background-color: rgba(0, 0, 0, 0)
+			font-size: 1rem
+			font-family: 'Roboto Light'
+			border: none
+			width: 100%
+			height: 100%
+
+	fieldset
+		display: flex
+		align-items: center
+		justify-content: center
+
+		legend
+			color: $WHITE
+			font-family: 'Roboto Black'
+			
+		[class^=order-by]
+			width: 50%
+			margin: 1rem auto
+
+			label
+				color: $GRAY
+				font-family: 'Roboto Light'
+			
+			input[type=radio]:checked
+				transform: scale(1.3)
+
+			span
+				color: $GRAY
+				font-size: 1.5rem

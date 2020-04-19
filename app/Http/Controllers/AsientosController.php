@@ -14,7 +14,7 @@ class AsientosController extends Controller
      */
     public function index()
     {
-		return view('asientos');
+		return Asiento::all();
     }
 
     /**
