@@ -7,6 +7,7 @@ Route::redirect('/', '/login');;
 Route::view('/home', 'asientos')->name('home');
 
 Route::get('/asientos', 'AsientosController@index')->name('asientos.index');
+Route::post('/asientos', 'AsientosController@store')->name('asientos.store');
 Route::get('/asientos/total', 'AsientosController@totalAsientos')->name('asientos.total');
 
 Route::get('/accounts', 'AccountsController@index');

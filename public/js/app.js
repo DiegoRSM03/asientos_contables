@@ -1947,9 +1947,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
-/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(toastr__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _AsientoRow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AsientoRow */ "./resources/js/components/AsientoRow.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
+/* harmony import */ var toastr__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(toastr__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _AsientoRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AsientoRow */ "./resources/js/components/AsientoRow.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2000,33 +2009,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 
-var rowId = 0;
+
+
 var rowIdShow = 2;
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'asientos-new',
   components: {
-    'asiento-row': _AsientoRow__WEBPACK_IMPORTED_MODULE_1__["default"]
+    'asiento-row': _AsientoRow__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  data: function data() {
-    return {
-      id: '',
-      date: '',
-      description: '',
-      debe: '',
-      haber: '',
-      debe_mount: '',
-      haber_mount: ''
-    };
-  },
-  methods: {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])(['getTotalAsientos']), {
     setId: function setId() {
-      rowId++;
-      return rowId;
+      this.rowId++;
+      return this.rowId;
     },
     newAsiento: function newAsiento() {
       rowIdShow++;
       document.getElementById('asiento-row-' + rowIdShow).hidden = false;
+    },
+    setDebeHaber: function setDebeHaber(arrayElements) {
+      var stringContainer = '';
+
+      for (var i = 0; i < arrayElements.length; i++) {
+        var element = arrayElements[i];
+
+        if (element.value != null && element.value != '' && element.value != '0' && element.hidden == false) {
+          stringContainer += element.value + ',';
+        }
+      }
+
+      return stringContainer.substr(0, stringContainer.length - 1);
+    },
+    saveNewAsiento: function saveNewAsiento() {
+      var _this = this;
+
+      var debeString = document.getElementsByClassName('account-debe-value');
+      var haberString = document.getElementsByClassName('account-haber-value');
+      var debeMountString = document.getElementsByClassName('number-debe-mount');
+      var haberMountString = document.getElementsByClassName('number-haber-mount');
+      var debe = this.setDebeHaber(debeString);
+      var haber = this.setDebeHaber(haberString);
+      var debeMount = this.setDebeHaber(debeMountString);
+      var haberMount = this.setDebeHaber(haberMountString);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/asientos', {
+        id: this.totalAsientos + 1,
+        date: this.asientoNew.date,
+        description: this.asientoNew.description,
+        debe: debe,
+        haber: haber,
+        debe_mount: debeMount,
+        haber_mount: haberMount
+      }).then(function (response) {
+        return response.data;
+      }).then(function (data) {
+        if (data.status = 'successful') {
+          toastr__WEBPACK_IMPORTED_MODULE_1___default.a.success("Su asiento fue a\xF1adido con el numero ".concat(_this.totalAsientos + 1, ", lo puede ver mas abajo."), 'Asiento añadido con éxito');
+        } else {
+          toastr__WEBPACK_IMPORTED_MODULE_1___default.a.error('Ocurrio un error al agregar el asiento');
+        }
+      });
     }
+  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(['totalAsientos', 'asientoNew'])),
+  mounted: function mounted() {
+    this.getTotalAsientos();
   }
 });
 
@@ -2091,8 +2136,8 @@ __webpack_require__.r(__webpack_exports__);
     block: function block(who, wich) {
       document.getElementById('new-' + who + '-' + this.rowId).hidden = false;
       document.getElementById('new-' + wich + '-' + this.rowId).hidden = true;
-      document.getElementById('new-' + who + '-mount-' + this.rowId).hidden = false;
-      document.getElementById('new-' + wich + '-mount-' + this.rowId).hidden = true;
+      document.getElementById('number-' + who + '-mount-' + this.rowId).hidden = false;
+      document.getElementById('number-' + wich + '-mount-' + this.rowId).hidden = true;
     }
   },
   created: function created() {
@@ -14084,157 +14129,144 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", { attrs: { id: "asientos-new" } }, [
-    _c("h1", [_vm._v("Añadir Asiento")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "container-id-date" }, [
-      _c("div", { staticClass: "new-id" }, [
-        _c("span", { staticClass: "flaticon-information" }),
+  return _c(
+    "form",
+    {
+      attrs: { id: "asientos-new" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.saveNewAsiento()
+        }
+      }
+    },
+    [
+      _c("h1", [_vm._v("Añadir Asiento")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-id-date" }, [
+        _c("div", { staticClass: "new-id" }, [
+          _c("span", { staticClass: "flaticon-information" }),
+          _vm._v(" "),
+          _c("p", [_vm._v("Numero " + _vm._s(_vm.totalAsientos + 1) + " ")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "new-date" }, [
+          _c("span", { staticClass: "flaticon-calendar" }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.asientoNew.date,
+                expression: "asientoNew.date"
+              }
+            ],
+            attrs: {
+              type: "date",
+              name: "new-date",
+              id: "new-date",
+              min: "2020-04-01",
+              max: "2025-04-01",
+              required: ""
+            },
+            domProps: { value: _vm.asientoNew.date },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.asientoNew, "date", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "new-description" }, [
+        _c("span", { staticClass: "flaticon-edit" }),
         _vm._v(" "),
         _c("input", {
           directives: [
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.id,
-              expression: "id"
+              value: _vm.asientoNew.description,
+              expression: "asientoNew.description"
             }
           ],
           attrs: {
-            type: "number",
-            name: "new-id",
-            id: "new-id",
+            type: "text",
+            name: "new-description",
+            id: "new-description",
             min: "1",
             max: "100",
-            placeholder: "Id del Asiento",
+            placeholder: "Descripcion del asiento",
             required: ""
           },
-          domProps: { value: _vm.id },
+          domProps: { value: _vm.asientoNew.description },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.id = $event.target.value
+              _vm.$set(_vm.asientoNew, "description", $event.target.value)
             }
           }
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "new-date" }, [
-        _c("span", { staticClass: "flaticon-calendar" }),
+      _c("table", { staticClass: "container-table" }, [
+        _vm._m(0),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.date,
-              expression: "date"
-            }
+        _c(
+          "tbody",
+          { attrs: { id: "tbody" } },
+          [
+            _c("asiento-row", { attrs: { rowId: 1 } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 2 } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 3, hidden: "" } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 4, hidden: "" } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 5, hidden: "" } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 6, hidden: "" } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 7, hidden: "" } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 8, hidden: "" } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 9, hidden: "" } }),
+            _vm._v(" "),
+            _c("asiento-row", { attrs: { rowId: 10, hidden: "" } }),
+            _vm._v(" "),
+            _c("tr", { staticClass: "adder" }, [
+              _c(
+                "td",
+                {
+                  attrs: { colspan: "5", id: "adder" },
+                  on: {
+                    click: function($event) {
+                      return _vm.newAsiento()
+                    }
+                  }
+                },
+                [_vm._m(1)]
+              )
+            ])
           ],
-          attrs: {
-            type: "date",
-            name: "new-date",
-            id: "new-date",
-            min: "2020-04-01",
-            max: "2025-04-01",
-            required: ""
-          },
-          domProps: { value: _vm.date },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.date = $event.target.value
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "new-description" }, [
-      _c("span", { staticClass: "flaticon-edit" }),
+          1
+        )
+      ]),
       _vm._v(" "),
       _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.description,
-            expression: "description"
-          }
-        ],
-        attrs: {
-          type: "text",
-          name: "new-description",
-          id: "new-description",
-          min: "1",
-          max: "100",
-          placeholder: "Descripcion del asiento",
-          required: ""
-        },
-        domProps: { value: _vm.description },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.description = $event.target.value
-          }
-        }
+        attrs: { type: "submit", value: "Añadir", id: "save-new-asiento" }
       })
-    ]),
-    _vm._v(" "),
-    _c("table", { staticClass: "container-table" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        { attrs: { id: "tbody" } },
-        [
-          _c("asiento-row", { attrs: { rowId: _vm.setId() } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId() } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("asiento-row", { attrs: { rowId: _vm.setId(), hidden: "" } }),
-          _vm._v(" "),
-          _c("tr", { staticClass: "adder" }, [
-            _c(
-              "td",
-              {
-                attrs: { colspan: "5", id: "adder" },
-                on: {
-                  click: function($event) {
-                    return _vm.newAsiento()
-                  }
-                }
-              },
-              [_vm._m(1)]
-            )
-          ])
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("input", { attrs: { type: "submit", value: "Añadir" } })
-  ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -14324,6 +14356,7 @@ var render = function() {
                 expression: "id"
               }
             ],
+            staticClass: "account-debe-value",
             attrs: { name: "new-debe", id: "new-debe-" + _vm.rowId },
             on: {
               change: function($event) {
@@ -14342,7 +14375,7 @@ var render = function() {
             }
           },
           [
-            _c("option", { attrs: { disabled: "", selected: "" } }, [
+            _c("option", { attrs: { selected: "", disabled: "" } }, [
               _vm._v("Cuenta")
             ]),
             _vm._v(" "),
@@ -14381,6 +14414,7 @@ var render = function() {
                 expression: "id"
               }
             ],
+            staticClass: "account-haber-value",
             attrs: {
               name: "new-haber",
               id: "new-haber-" + _vm.rowId,
@@ -14403,7 +14437,7 @@ var render = function() {
             }
           },
           [
-            _c("option", { attrs: { disabled: "", selected: "" } }, [
+            _c("option", { attrs: { selected: "", disabled: "" } }, [
               _vm._v("Cuenta")
             ]),
             _vm._v(" "),
@@ -14422,28 +14456,28 @@ var render = function() {
     _vm._v(" "),
     _c("td", { staticClass: "number-debe" }, [
       _c("input", {
+        staticClass: "number-debe-mount",
         attrs: {
           type: "number",
-          name: "new-debe-mount",
-          id: "new-debe-mount-" + _vm.rowId,
+          name: "number-debe-mount",
+          id: "number-debe-mount-" + _vm.rowId,
           min: "1",
-          max: "99999",
-          value: "0",
-          required: ""
+          max: "999999",
+          placeholder: "Monto $"
         }
       })
     ]),
     _vm._v(" "),
     _c("td", { staticClass: "number-haber" }, [
       _c("input", {
+        staticClass: "number-haber-mount",
         attrs: {
           type: "number",
-          name: "new-haber-mount",
-          id: "new-haber-mount-" + _vm.rowId,
+          name: "number-haber-mount",
+          id: "number-haber-mount-" + _vm.rowId,
           min: "1",
-          max: "99999",
-          value: "0",
-          required: "",
+          max: "999999",
+          placeholder: "Monto $",
           hidden: ""
         }
       })
@@ -27912,13 +27946,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   document.getElementById('search-id').addEventListener('focusout', function () {
     document.getElementsByClassName('search-id')[0].style.backgroundColor = 'rgba(34, 34, 34, .3)';
-  }); // ANIMACION FOCUS DIV NEW-ID
-
-  document.getElementById('new-id').addEventListener('focusin', function () {
-    document.getElementsByClassName('new-id')[0].style.backgroundColor = 'rgba(34, 34, 34, .6)';
-  });
-  document.getElementById('new-id').addEventListener('focusout', function () {
-    document.getElementsByClassName('new-id')[0].style.backgroundColor = 'rgba(34, 34, 34, .3)';
   });
 });
 
@@ -28228,9 +28255,21 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    totalAsientos: 0
+    totalAsientos: 0,
+    asientoNew: {
+      id: 0,
+      date: '',
+      description: '',
+      debe: '',
+      haber: '',
+      debe_mount: '',
+      haber_mount: ''
+    },
+    asientoSeach: {
+      id: 0,
+      orderBy: ''
+    }
   },
-  getters: {},
   mutations: {
     setTotalAsientos: function setTotalAsientos(state, asientos) {
       state.totalAsientos = asientos;

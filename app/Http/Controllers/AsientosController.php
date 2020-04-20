@@ -25,7 +25,19 @@ class AsientosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$asiento = new Asiento;
+
+		$asiento->id = $request->id;
+		$asiento->date = $request->date;
+		$asiento->description = $request->description;
+		$asiento->debe = $request->debe;
+		$asiento->haber = $request->haber;
+		$asiento->debe_mount = $request->debe_mount;
+		$asiento->haber_mount = $request->haber_mount;
+
+		$asiento->save();
+
+		return json_encode(['status' => 'successful']);
     }
 
     /**

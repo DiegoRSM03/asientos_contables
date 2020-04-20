@@ -6,10 +6,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		totalAsientos: 0
-	},
-	getters: {
-
+		totalAsientos: 0,
+		asientoNew: {
+			id: 0,
+			date: '',
+			description: '',
+			debe: '',
+			haber: '',
+			debe_mount: '',
+			haber_mount: ''
+		},
+		asientoSeach: {
+			id: 0,
+			orderBy: ''
+		}
 	},
 	mutations: {
 		setTotalAsientos (state, asientos) {

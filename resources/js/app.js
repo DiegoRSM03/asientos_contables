@@ -8,14 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.getElementsByClassName('search-id')[0].style.backgroundColor = 'rgba(34, 34, 34, .3)';
 	});
 
-	// ANIMACION FOCUS DIV NEW-ID
-	document.getElementById('new-id').addEventListener('focusin' ,() => {
-		document.getElementsByClassName('new-id')[0].style.backgroundColor = 'rgba(34, 34, 34, .6)';
-	});
-	document.getElementById('new-id').addEventListener('focusout' ,() => {
-		document.getElementsByClassName('new-id')[0].style.backgroundColor = 'rgba(34, 34, 34, .3)';
-	});
-
 });
 
 import Vue from 'vue';

@@ -14,7 +14,7 @@ class AccountsController extends Controller
      */
     public function index()
     {
-		return Account::all();
+		return Account::orderBy('name', 'asc')->get();
     }
 
     /**
