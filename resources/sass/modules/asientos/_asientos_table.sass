@@ -17,20 +17,48 @@
 			tr th
 				padding: .5rem 0
 				border-left: 1px solid $GRAY
+				cursor: pointer
 
 
 		tbody
-			color: $GRAY
+			tr:nth-child(even)
+				background-color: lighten($BLACK, 50)
+				td .nothing
+					color: lighten($BLACK, 50)
 
+			tr:nth-child(odd)
+				background-color: lighten($BLACK, 70)
+				td .nothing
+					color: lighten($BLACK, 70)
+			.number,
+			.date
+				font-family: 'Roboto'
+				font-size: 1rem
+				text-align: center
 			.number
-				td
-					color: $BLACK
-					background-color: $GREEN_DARK
+				color: $BLACK
+				padding: .5rem
+
+			.debe-haber-description
+				display: flex
+				flex-direction: column
+				justify-content: center
+
+				p
+					display: inline-block
+				.debe
+					align-self: flex-start
+				.haber
+					align-self: center
+				.description
 					font-family: 'Roboto Bold'
-					text-align: center
-					padding: .5rem
+
+			.sub-total
+				font-family: 'Roboto Bold'
+
 
 			tr
+				font-family: 'Roboto'
 				td
 					font-size: .8rem
 					padding: .3rem 0

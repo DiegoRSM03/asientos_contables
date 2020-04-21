@@ -586,18 +586,65 @@ nav p {
 #asientos-table table thead tr th {
   padding: 0.5rem 0;
   border-left: 1px solid #818181;
+  cursor: pointer;
 }
 
-#asientos-table table tbody {
-  color: #818181;
+#asientos-table table tbody tr:nth-child(even) {
+  background-color: #b3b3b3;
 }
 
-#asientos-table table tbody .number td {
-  color: #333333;
-  background-color: #97BF04;
-  font-family: "Roboto Bold";
+#asientos-table table tbody tr:nth-child(even) td .nothing {
+  color: #b3b3b3;
+}
+
+#asientos-table table tbody tr:nth-child(odd) {
+  background-color: #e6e6e6;
+}
+
+#asientos-table table tbody tr:nth-child(odd) td .nothing {
+  color: #e6e6e6;
+}
+
+#asientos-table table tbody .number,
+#asientos-table table tbody .date {
+  font-family: "Roboto";
+  font-size: 1rem;
   text-align: center;
+}
+
+#asientos-table table tbody .number {
+  color: #333333;
   padding: 0.5rem;
+}
+
+#asientos-table table tbody .debe-haber-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#asientos-table table tbody .debe-haber-description p {
+  display: inline-block;
+}
+
+#asientos-table table tbody .debe-haber-description .debe {
+  align-self: flex-start;
+}
+
+#asientos-table table tbody .debe-haber-description .haber {
+  align-self: center;
+}
+
+#asientos-table table tbody .debe-haber-description .description {
+  font-family: "Roboto Bold";
+}
+
+#asientos-table table tbody .sub-total {
+  font-family: "Roboto Bold";
+}
+
+#asientos-table table tbody tr {
+  font-family: "Roboto";
 }
 
 #asientos-table table tbody tr td {

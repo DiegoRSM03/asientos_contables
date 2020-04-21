@@ -1,20 +1,20 @@
 <template>
-	<form id="asientos-search">
+	<form v-on:submit.prevent="searchAsiento()" id="asientos-search">
 		<h1>Buscar Asiento</h1>
 		<div class="search-id">
 			<span class="flaticon-information"></span>
-			<input type="number" name="search-id" id="search-id" min="1" max="100" placeholder="Id del Asiento" required>
+			<input type="number" name="search-id" id="search-id" min="1" max="100" placeholder="Id del Asiento" v-model="id" required>
 		</div>
 		<fieldset>
 			<legend>Ordenar Por</legend>
 			<div class="order-by-id">
 				<label>Numero de asiento</label>
-				<input type="radio" name="search-radio" id="order-id">
+				<input type="radio" name="search-radio" id="order-id" value="id" v-model="orderBy">
 				<span class="flaticon-list"></span>
 			</div>
 			<div class="order-by-date">
 				<label>Fecha de asiento</label>
-				<input type="radio" name="search-radio" id="order-date">
+				<input type="radio" name="search-radio" id="order-date" value="date" v-model="orderBy">
 				<span class="flaticon-calendar"></span>
 			</div>
 		</fieldset>
@@ -24,6 +24,17 @@
 
 <script>
 export default {
-	name: 'asientos-search'
+	name: 'asientos-search',
+	data () {
+		return {
+			id: 0,
+			orderBy: ''
+		}
+	},
+	methods: {
+		searchAsiento () {
+			alert('Works');
+		}
+	}
 }
 </script>

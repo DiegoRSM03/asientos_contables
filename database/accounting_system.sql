@@ -27,7 +27,7 @@ CREATE TABLE `accounts` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=413 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES (1,'Caja','Activo'),(2,'Banco XX c/c','Activo'),(3,'Val a Dep.','Activo'),(4,'Mercaderías','Activo'),(5,'Deudores por Ventas','Activo'),(6,'Deudores Varios','Activo'),(7,'Documentos a Cobrar','Activo'),(8,'Muebles y Utiles','Activo'),(9,'Instalaciones','Activo'),(10,'Herramientas','Activo'),(11,'Rodados','Activo'),(12,'Maquinarias','Activo'),(13,'Equipos de Computacion','Activo'),(14,'Acreedores Varios','Pasivo'),(15,'Proveedores','Pasivo'),(16,'Val Dif. a Pagar','Pasivo'),(17,'Documentos a Pagar','Pasivo'),(18,'Capital','PN'),(19,'Quebranto del Ejercicio','PN'),(20,'Utilidad del Ejercicio','PN'),(21,'Ventas','Ganancias'),(22,'Alquileres Cobrados','Ganancias'),(23,'Intereses Cobrados','Ganancias'),(24,'Comisiones Cobradas','Ganancias'),(25,'Descuentos Obtenidos','Ganancias'),(26,'CMV','Perdidas'),(27,'Alquileres Pagados','Perdidas'),(28,'Intereses Pagados','Perdidas'),(29,'Comisiones Pagadas','Perdidas'),(30,'Descuentos Otorgados','Perdidas'),(31,'Sueldos y Jornales','Perdidas'),(32,'Fletes y Acarreos','Perdidas'),(33,'Impuestos','Perdidas'),(34,'Seguro','Perdidas'),(35,'Publicidad','Perdidas'),(36,'Gastos Generales','Perdidas');
+INSERT INTO `accounts` VALUES (101,'Caja','Activo'),(102,'Banco XX c/c','Activo'),(103,'Val a Dep.','Activo'),(104,'Mercaderías','Activo'),(105,'Deudores por Ventas','Activo'),(106,'Deudores Varios','Activo'),(107,'Documentos a Cobrar','Activo'),(108,'Muebles y Utiles','Activo'),(109,'Instalaciones','Activo'),(110,'Herramientas','Activo'),(111,'Rodados','Activo'),(112,'Maquinarias','Activo'),(113,'Equipos de Computacion','Activo'),(201,'Acreedores Varios','Pasivo'),(202,'Proveedores','Pasivo'),(203,'Val Dif. a Pagar','Pasivo'),(204,'Documentos a Pagar','Pasivo'),(301,'Capital','PN'),(302,'Quebranto del Ejercicio','PN'),(303,'Utilidad del Ejercicio','PN'),(401,'CMV','Perdidas'),(402,'Alquileres Pagados','Perdidas'),(403,'Intereses Pagados','Perdidas'),(404,'Comisiones Pagadas','Perdidas'),(405,'Descuentos Otorgados','Perdidas'),(406,'Sueldos y Jornales','Perdidas'),(407,'Fletes y Acarreos','Perdidas'),(408,'Impuestos','Perdidas'),(409,'Seguro','Perdidas'),(410,'Publicidad','Perdidas'),(411,'Gastos Generales','Perdidas'),(412,'Compra','Perdidas'),(501,'Ventas','Ganancias'),(502,'Alquileres Cobrados','Ganancias'),(503,'Intereses Cobrados','Ganancias'),(504,'Comisiones Cobradas','Ganancias'),(505,'Descuentos Obtenidos','Ganancias');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-17 13:09:51
+-- Dump completed on 2020-04-21 17:40:46

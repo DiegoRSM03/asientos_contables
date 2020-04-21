@@ -11,6 +11,7 @@ Route::post('/asientos', 'AsientosController@store')->name('asientos.store');
 Route::get('/asientos/total', 'AsientosController@totalAsientos')->name('asientos.total');
 
 Route::get('/accounts', 'AccountsController@index');
+Route::get('/accounts/{code}', 'AccountsController@show');
 
 Route::get('/login', 'LoginController@show')->name('login.show');
 Route::post('/login', 'LoginController@verify')->name('login.verify');
