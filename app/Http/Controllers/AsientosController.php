@@ -48,7 +48,7 @@ class AsientosController extends Controller
      */
     public function show($id)
     {
-        //
+        return Asiento::find($id);
     }
 
     /**

@@ -15,10 +15,6 @@ export default new Vuex.Store({
 			haber: '',
 			debe_mount: '',
 			haber_mount: ''
-		},
-		asientoSeach: {
-			id: 0,
-			orderBy: ''
 		}
 	},
 	mutations: {

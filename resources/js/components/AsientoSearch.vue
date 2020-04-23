@@ -5,36 +5,38 @@
 			<span class="flaticon-information"></span>
 			<input type="number" name="search-id" id="search-id" min="1" max="100" placeholder="Id del Asiento" v-model="id" required>
 		</div>
-		<fieldset>
-			<legend>Ordenar Por</legend>
-			<div class="order-by-id">
-				<label>Numero de asiento</label>
-				<input type="radio" name="search-radio" id="order-id" value="id" v-model="orderBy">
-				<span class="flaticon-list"></span>
-			</div>
-			<div class="order-by-date">
-				<label>Fecha de asiento</label>
-				<input type="radio" name="search-radio" id="order-date" value="date" v-model="orderBy">
-				<span class="flaticon-calendar"></span>
-			</div>
-		</fieldset>
+		<p>
+			Busque por ID, el Numero de asiento que usted desee.
+		</p>
 		<input type="submit" value="Buscar">
 	</form>
 </template>
 
 <script>
+import toastr from 'toastr';
+import EventBus from '../event_bus';
+import { mapState } from 'vuex';
+
 export default {
 	name: 'asientos-search',
 	data () {
 		return {
-			id: 0,
-			orderBy: ''
+			id: 0
 		}
 	},
 	methods: {
 		searchAsiento () {
-			alert('Works');
+			if (this.id > this.totalAsientos) {
+				toastr.error('No hay ningun asiento con el numero que has introducido', 'Asiento Inexistente');
+			} else {
+				EventBus.$emit('searchWorking', this.id);
+			}
 		}
+	},
+	computed: {
+		...mapState([
+			'totalAsientos'
+		])
 	}
 }
 </script>

@@ -25,16 +25,9 @@
 				</tr>
 			</thead>
 			<tbody id="tbody">
-				<asiento-row :rowId="1"></asiento-row>
-				<asiento-row :rowId="2"></asiento-row>
-				<asiento-row :rowId="3" hidden></asiento-row>
-				<asiento-row :rowId="4" hidden></asiento-row>
-				<asiento-row :rowId="5" hidden></asiento-row>
-				<asiento-row :rowId="6" hidden></asiento-row>
-				<asiento-row :rowId="7" hidden></asiento-row>
-				<asiento-row :rowId="8" hidden></asiento-row>
-				<asiento-row :rowId="9" hidden></asiento-row>
-				<asiento-row :rowId="10" hidden></asiento-row>
+				<tr is="asiento-row" :rowId="1"></tr>
+				<tr is="asiento-row" :rowId="2"></tr>
+				<tr is="asiento-row" :rowId="i" hidden v-for="i in 12" :key="i" v-if="i > 2"></tr>
 				<tr class="adder">
 					<td colspan="5" @click="newAsiento()" id="adder">
 						<div><span class="flaticon-plus"></span>Nuevo</div>
@@ -51,6 +44,7 @@ import axios from 'axios';
 import toastr from 'toastr';
 import AsientoRow from './AsientoRow';
 import { mapState, mapActions } from 'vuex';
+import EventBus from '../event_bus.js';
 
 var rowIdShow = 2;
 
@@ -105,10 +99,13 @@ export default {
 				.then(response => response.data)
 				.then(data => {
 					if (data.status = 'successful') {
-						toastr.success(`Su asiento fue añadido con el numero ${this.totalAsientos + 1}, lo puede ver mas abajo.`, 'Asiento añadido con éxito')
+						toastr.success(`Asiento numero ${this.totalAsientos + 1}, añadido, lo puede ver en la tabla`, 'Asiento añadido con éxito')
 					} else {
 						toastr.error('Ocurrio un error al agregar el asiento')
 					}
+
+					this.getTotalAsientos();
+					EventBus.$emit('newAsientoAdded');
 				})
 		}
 	},

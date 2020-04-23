@@ -24,6 +24,7 @@
 
 <script>
 import axios from 'axios';
+import EventBus from '../event_bus.js';
 
 export default {
 	name: 'asiento-row',
@@ -53,6 +54,13 @@ export default {
 	},
 	created () {
 		this.getAccounts();
+		EventBus.$on('newAsientoAdded', () => {
+			document.getElementById('new-debe-' + this.rowId).value = null;
+			document.getElementById('new-haber-' + this.rowId).value = null;
+
+			document.getElementById('number-debe-mount-' + this.rowId).value = "";
+			document.getElementById('number-haber-mount-' + this.rowId).value = "";
+		});
 	}
 }
 </script>

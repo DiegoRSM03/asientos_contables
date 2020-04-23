@@ -9,6 +9,7 @@ Route::view('/home', 'asientos')->name('home');
 Route::get('/asientos', 'AsientosController@index')->name('asientos.index');
 Route::post('/asientos', 'AsientosController@store')->name('asientos.store');
 Route::get('/asientos/total', 'AsientosController@totalAsientos')->name('asientos.total');
+Route::get('/asientos/{id}', 'AsientosController@show')->name('asientos.show');
 
 Route::get('/accounts', 'AccountsController@index');
 Route::get('/accounts/{code}', 'AccountsController@show');

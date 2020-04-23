@@ -21,6 +21,12 @@
 
 
 		tbody
+			tr td
+				color: $BLACK
+				font-family: 'Roboto'
+				font-size: .8rem
+				padding: .3rem 0
+
 			tr:nth-child(even)
 				background-color: lighten($BLACK, 50)
 				td .nothing
@@ -35,8 +41,14 @@
 				font-family: 'Roboto'
 				font-size: 1rem
 				text-align: center
+
+				p:nth-child(2)
+					font-family: 'Roboto Light'
+					text-transform: capitalize
+					
 			.number
-				color: $BLACK
+				color: #000000
+				font-family: 'Roboto Black'
 				padding: .5rem
 
 			.debe-haber-description
@@ -46,26 +58,24 @@
 
 				p
 					display: inline-block
+					width: 15rem
 				.debe
 					align-self: flex-start
 				.haber
 					align-self: center
 				.description
+					color: #000000
 					font-family: 'Roboto Bold'
+					padding-top: .8rem
 
 			.sub-total
+				color: #000000
 				font-family: 'Roboto Bold'
+				padding: .8rem 0 .2rem 0
 
-
-			tr
-				font-family: 'Roboto'
-				td
-					font-size: .8rem
-					padding: .3rem 0
-
-				.table-description
-					[class^=d], [class^=h]
-						display: flex
-						justify-content: space-between
+			.table-description
+				[class^=d], [class^=h]
+					display: flex
+					justify-content: space-between
 
 					
